@@ -1,6 +1,7 @@
 package com.game.monsters;
 
 import com.game.engines.BattleField;
+import com.game.engines.Coordinate;
 
 public abstract class Monster {
 
@@ -17,4 +18,12 @@ public abstract class Monster {
     }
 
     public abstract void move(int steps);
+
+    public void kill() {
+        battleField.set(x, y, 'x');
+    }
+
+    public Coordinate getCoordinate() {
+        return new Coordinate(x, y);
+    }
 }

@@ -1,6 +1,7 @@
 package com.game.weapon;
 
 import com.game.engines.BattleField;
+import com.game.engines.Coordinate;
 
 public final class Bullet {
 
@@ -22,5 +23,9 @@ public final class Bullet {
             x--;
         }
         battleField.set(x, y, '^');
+    }
+
+    public Coordinate getCoordinate() {
+        return new Coordinate(x, y);
     }
 }

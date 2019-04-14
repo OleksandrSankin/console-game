@@ -1,6 +1,7 @@
 package com.game.heroes;
 
 import com.game.engines.BattleField;
+import com.game.engines.Coordinate;
 import com.game.weapon.Bullet;
 import com.game.weapon.Weapon;
 
@@ -30,4 +31,8 @@ public abstract class Hero {
     public abstract void moveRight();
 
     public abstract Bullet fire();
+
+    public Coordinate getCoordinate() {
+        return new Coordinate(x, y);
+    }
 }

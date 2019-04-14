@@ -47,6 +47,8 @@ public class SimpleEngine {
 
             moveBulletsUp();
 
+            checkIfSomeMonstersAreKilled();
+
             showHero();
 
             renderBattleField();
@@ -93,6 +95,35 @@ public class SimpleEngine {
                 monsters.add(monster);
                 numberOfMonsters++;
             }
+        }
+    }
+
+    private void checkIfSomeMonstersAreKilled() {
+        List<Monster> monstersForRemoved = new ArrayList<>();
+        List<Bullet> bulletsForRemoved = new ArrayList<>();
+
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < monsters.size(); j++) {
+                Bullet bullet = bullets.get(i);
+                Monster monster = monsters.get(i);
+
+                if (bullet.getCoordinate().getX() == monster.getCoordinate().getX()
+                        && bullet.getCoordinate().getY() == monster.getCoordinate().getY())
+                {
+                    monstersForRemoved.add(monster);
+                    bulletsForRemoved.add(bullet);
+                }
+            }
+        }
+
+        for (int i = 0; i < monstersForRemoved.size(); i++) {
+            Monster monster = monstersForRemoved.get(i);
+            monster.kill();
+            monsters.remove(monster);
+        }
+
+        for (int i = 0; i < bulletsForRemoved.size(); i++) {
+            bullets.remove(bulletsForRemoved.get(i));
         }
     }
 
