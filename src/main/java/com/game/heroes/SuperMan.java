@@ -1,15 +1,17 @@
 package com.game.heroes;
 
 import com.game.engines.BattleField;
+import com.game.weapon.Bullet;
+import com.game.weapon.Weapon;
 
 public class SuperMan extends Hero {
 
-    public SuperMan(BattleField battleField) {
-        super(battleField.getHeight(), battleField.getWidth() / 2, battleField);
+    public SuperMan(Weapon weapon, BattleField battleField) {
+        super(battleField.getHeight(), battleField.getWidth() / 2, weapon, battleField);
     }
 
     @Override
-    void show() {
+    public void draw() {
         battleField.set(x, y, 'S');
     }
 
@@ -32,7 +34,7 @@ public class SuperMan extends Hero {
     }
 
     @Override
-    public void fire() {
-
+    public Bullet fire() {
+        return weapon.fire(x, y, battleField);
     }
 }

@@ -4,6 +4,7 @@ import com.game.engines.BattleField;
 import com.game.engines.SimpleEngine;
 import com.game.heroes.SuperMan;
 import com.game.monsters.MonsterFactory;
+import com.game.weapon.Gun;
 import jline.console.ConsoleReader;
 
 import java.io.IOException;
@@ -14,10 +15,9 @@ public class Main {
 
         ConsoleReader console = new ConsoleReader();
         BattleField battleField = new BattleField(25, 18, console);
-        MonsterFactory monsterFactory = new MonsterFactory();
-        SuperMan hero = new SuperMan(battleField);
+        SuperMan hero = new SuperMan(new Gun(), battleField);
 
-        SimpleEngine gameEngine = new SimpleEngine(battleField, hero, monsterFactory, console);
+        SimpleEngine gameEngine = new SimpleEngine(battleField, hero, new MonsterFactory(), console);
         gameEngine.runGame();
     }
 }
