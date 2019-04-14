@@ -14,19 +14,27 @@ import java.util.List;
 public class SimpleEngine {
 
     private final BattleField battleField;
+
+    private final int totalNumberOfMonstersOnScreen;
+
+    private int numberOfMonsters;
+
     private final MonsterFactory monsterFactory;
 
     private final ConsoleReader console;
 
     private final Hero hero;
 
-    private int numberOfMonsters;
+    private final List<Monster> monsters = new ArrayList<>();
 
-    private List<Monster> monsters = new ArrayList<>();
+    private final List<Bullet> bullets = new ArrayList<>();
 
-    private List<Bullet> bullets = new ArrayList<>();
-
-    public SimpleEngine(BattleField battleField, Hero hero, MonsterFactory monsterFactory, ConsoleReader console) {
+    public SimpleEngine(Hero hero,
+                        BattleField battleField,
+                        MonsterFactory monsterFactory,
+                        int totalNumberOfMonstersOnScreen,
+                        ConsoleReader console) {
+        this.totalNumberOfMonstersOnScreen = totalNumberOfMonstersOnScreen;
         this.monsterFactory = monsterFactory;
         this.battleField = battleField;
         this.console = console;
@@ -57,6 +65,8 @@ public class SimpleEngine {
 
             cleanScreen();
         }
+
+        gameOver();
     }
 
     private void moveBulletsUp() {
@@ -78,6 +88,14 @@ public class SimpleEngine {
     }
 
     private boolean heroIsAlive() {
+        for (int j = 0; j < monsters.size(); j++) {
+            Monster monster = monsters.get(j);
+            if (hero.getCoordinate().getX() == monster.getCoordinate().getX()
+                    && hero.getCoordinate().getY() == monster.getCoordinate().getY()) {
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -89,8 +107,8 @@ public class SimpleEngine {
     }
 
     private void addNewMonstersIfNeeded() {
-        if (numberOfMonsters < 5) {
-            for (int i = numberOfMonsters; i < 5; i++) {
+        if (numberOfMonsters < totalNumberOfMonstersOnScreen) {
+            for (int i = numberOfMonsters; i < totalNumberOfMonstersOnScreen; i++) {
                 Monster monster = monsterFactory.buildMonster(battleField);
                 monsters.add(monster);
                 numberOfMonsters++;
@@ -105,7 +123,7 @@ public class SimpleEngine {
         for (int i = 0; i < bullets.size(); i++) {
             for (int j = 0; j < monsters.size(); j++) {
                 Bullet bullet = bullets.get(i);
-                Monster monster = monsters.get(i);
+                Monster monster = monsters.get(j);
 
                 if (bullet.getCoordinate().getX() == monster.getCoordinate().getX()
                         && bullet.getCoordinate().getY() == monster.getCoordinate().getY())
@@ -120,11 +138,18 @@ public class SimpleEngine {
             Monster monster = monstersForRemoved.get(i);
             monster.kill();
             monsters.remove(monster);
+            numberOfMonsters--;
         }
 
         for (int i = 0; i < bulletsForRemoved.size(); i++) {
             bullets.remove(bulletsForRemoved.get(i));
         }
+    }
+
+    private void gameOver() throws IOException {
+        console.clearScreen();
+        console.print("GAME OVER");
+        console.flush();
     }
 
     private void showHero() {

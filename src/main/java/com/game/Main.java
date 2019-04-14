@@ -17,7 +17,8 @@ public class Main {
         BattleField battleField = new BattleField(25, 18, console);
         SuperMan hero = new SuperMan(new Gun(), battleField);
 
-        SimpleEngine gameEngine = new SimpleEngine(battleField, hero, new MonsterFactory(), console);
+        SimpleEngine gameEngine = new SimpleEngine(hero, battleField,
+                new MonsterFactory(), 3, console);
         gameEngine.runGame();
     }
 }
