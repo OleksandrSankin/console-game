@@ -9,7 +9,7 @@ class VampireMonster extends Monster {
     }
 
     @Override
-    public void move(int steps) {
+    public void move() {
         battleField.set(x, y, ' ');
         x++;
         battleField.set(x, y, 'V');

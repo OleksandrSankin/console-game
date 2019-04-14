@@ -88,8 +88,8 @@ public class SimpleEngine {
     }
 
     private boolean heroIsAlive() {
-        for (int j = 0; j < monsters.size(); j++) {
-            Monster monster = monsters.get(j);
+        for (int i = 0; i < monsters.size(); i++) {
+            Monster monster = monsters.get(i);
             if (hero.getCoordinate().getX() == monster.getCoordinate().getX()
                     && hero.getCoordinate().getY() == monster.getCoordinate().getY()) {
                 return false;
@@ -100,9 +100,9 @@ public class SimpleEngine {
     }
 
     private void moveMonstersDown() {
-        for (int i = numberOfMonsters; i > 0; i--) {
-            Monster monster = monsters.get(i - 1);
-            monster.move(1);
+        for (int i = 0; i < monsters.size(); i++) {
+            Monster monster = monsters.get(i);
+            monster.move();
         }
     }
 

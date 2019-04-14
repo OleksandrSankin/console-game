@@ -17,7 +17,7 @@ public abstract class Monster {
         this.y = y;
     }
 
-    public abstract void move(int steps);
+    public abstract void move();
 
     public void kill() {
         battleField.set(x, y, 'x');
