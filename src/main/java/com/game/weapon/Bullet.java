@@ -20,9 +20,9 @@ public final class Bullet {
         if (coordinate.getX() > 0) {
             int x = coordinate.getX();
             coordinate = new Coordinate(--x, coordinate.getY());
-        }
 
-        battleField.set(coordinate, '^');
+            battleField.set(coordinate, '^');
+        }
     }
 
     public Coordinate getCoordinate() {
