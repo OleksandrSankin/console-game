@@ -90,8 +90,7 @@ public class SimpleEngine {
     private boolean heroIsAlive() {
         for (int i = 0; i < monsters.size(); i++) {
             Monster monster = monsters.get(i);
-            if (hero.getCoordinate().getX() == monster.getCoordinate().getX()
-                    && hero.getCoordinate().getY() == monster.getCoordinate().getY()) {
+            if (monster.getCoordinate().getX() >= hero.getCoordinate().getX()) {
                 return false;
             }
         }
@@ -148,7 +147,7 @@ public class SimpleEngine {
 
     private void gameOver() throws IOException {
         console.clearScreen();
-        console.print("GAME OVER");
+        console.print("GAME OVER\n");
         console.flush();
     }
 

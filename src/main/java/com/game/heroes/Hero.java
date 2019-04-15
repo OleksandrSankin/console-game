@@ -18,7 +18,7 @@ public abstract class Hero {
     Hero(int x, int y, Weapon weapon, BattleField battleField) {
         this.weapon = weapon;
         this.battleField = battleField;
-        this.x = x - 2;
+        this.x = x - 1;
         this.y = y;
 
         this.draw();

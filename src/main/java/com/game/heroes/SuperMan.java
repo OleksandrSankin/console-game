@@ -18,7 +18,7 @@ public class SuperMan extends Hero {
     @Override
     public void moveLeft() {
         battleField.set(x, y, ' ');
-        if (y > 1) {
+        if (y > 0) {
             y--;
         }
         battleField.set(x, y, 'S');
@@ -27,7 +27,7 @@ public class SuperMan extends Hero {
     @Override
     public void moveRight() {
         battleField.set(x, y, ' ');
-        if (y < battleField.getWidth() - 2) {
+        if (y < battleField.getWidth() - 1) {
             y++;
         }
         battleField.set(x, y, 'S');

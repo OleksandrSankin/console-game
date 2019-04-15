@@ -31,27 +31,47 @@ public class BattleField {
     void render() throws IOException {
         String field = "";
 
-        for (int i = 0; i < battleField.length; i++) {
-            for (int j = 0; j < battleField[i].length; j++) {
-                if (i == 0 || i == battleField.length - 1) {
-                    field += '-';
-                } else if (j == 0 || j == battleField[i].length - 1) {
-                    field += '|';
-                } else {
-                    field += battleField[i][j];
-                }
-            }
+        field = renderHorizontalBorder(field);
 
+        for (int x = 0; x < getHeight(); x++) {
+            for (int y = 0; y < getWidth(); y++) {
+                field = renderLine(field, x, y);
+            }
             field += '\n';
         }
+
+        field = renderHorizontalBorder(field);
 
         console.print(field);
         console.flush();
     }
 
+    private String renderLine(String field, int x, int y) {
+        if (y == 0) {
+            field += '|';
+        }
+
+        field += battleField[x][y];
+
+        if (y == getWidth() - 1) {
+            field += '|';
+        }
+
+        return field;
+    }
+
+    private String renderHorizontalBorder(String field) {
+        field += ' ';
+        for (int i = 1; i < getWidth() + 1; i++) {
+            field += '-';
+        }
+        field += '\n';
+        return field;
+    }
+
     private void clean() {
-        for (int i = 0; i < battleField.length; i++) {
-            for (int j = 0; j < battleField[i].length; j++) {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
                 battleField[i][j] = ' ';
             }
         }
