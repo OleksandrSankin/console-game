@@ -166,8 +166,9 @@ public class SimpleEngine {
     private Action readKeyBoard() throws IOException {
         KeyMap map = new KeyMap("");
         map.bind("\u001B[A", Action.Fire);
-        map.bind("\u001B[D", Action.Left);
+        map.bind("\u001B[B", Action.Down);
         map.bind("\u001B[C", Action.Right);
+        map.bind("\u001B[D", Action.Left);
         return (Action) console.readBinding(map);
     }
 }

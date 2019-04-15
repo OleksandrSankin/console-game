@@ -1,5 +1,5 @@
 package com.game.engines;
 
 public enum Action {
-    Fire, Left, Right
+    Fire, Left, Right, Down
 }
