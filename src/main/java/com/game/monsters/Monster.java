@@ -7,23 +7,20 @@ public abstract class Monster {
 
     final BattleField battleField;
 
-    int x;
+    Coordinate coordinate;
 
-    int y;
-
-    Monster(int x, int y, BattleField battleField) {
+    Monster(Coordinate coordinate, BattleField battleField) {
         this.battleField = battleField;
-        this.x = x;
-        this.y = y;
+        this.coordinate = coordinate;
     }
 
     public abstract void move();
 
     public void kill() {
-        battleField.set(x, y, 'x');
+        battleField.set(coordinate, 'x');
     }
 
     public Coordinate getCoordinate() {
-        return new Coordinate(x, y);
+        return coordinate;
     }
 }

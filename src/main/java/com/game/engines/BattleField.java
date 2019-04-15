@@ -24,8 +24,8 @@ public class BattleField {
         return battleField.length;
     }
 
-    public void set(int x, int y, char symbol) {
-        battleField[x][y] = symbol;
+    public void set(Coordinate coordinate, char symbol) {
+        battleField[coordinate.getX()][coordinate.getY()] = symbol;
     }
 
     void render() throws IOException {

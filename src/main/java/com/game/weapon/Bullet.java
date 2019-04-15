@@ -7,25 +7,25 @@ public final class Bullet {
 
     private final BattleField battleField;
 
-    private int x;
+    private Coordinate coordinate;
 
-    private int y;
-
-    Bullet(int x, int y, BattleField battleField) {
+    Bullet(Coordinate coordinate, BattleField battleField) {
         this.battleField = battleField;
-        this.x = x;
-        this.y = y;
+        this.coordinate = coordinate;
     }
 
     public void move() {
-        battleField.set(x, y, ' ');
-        if (x > 0) {
-            x--;
+        battleField.set(coordinate, ' ');
+
+        if (coordinate.getX() > 0) {
+            int x = coordinate.getX();
+            coordinate = new Coordinate(--x, coordinate.getY());
         }
-        battleField.set(x, y, '^');
+
+        battleField.set(coordinate, '^');
     }
 
     public Coordinate getCoordinate() {
-        return new Coordinate(x, y);
+        return coordinate;
     }
 }

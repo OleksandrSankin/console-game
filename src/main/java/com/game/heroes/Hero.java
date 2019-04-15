@@ -11,16 +11,12 @@ public abstract class Hero {
 
     final Weapon weapon;
 
-    int x;
+    Coordinate coordinate;
 
-    int y;
-
-    Hero(int x, int y, Weapon weapon, BattleField battleField) {
-        this.weapon = weapon;
+    Hero(Coordinate coordinate, Weapon weapon, BattleField battleField) {
         this.battleField = battleField;
-        this.x = x - 1;
-        this.y = y;
-
+        this.coordinate = coordinate;
+        this.weapon = weapon;
         this.draw();
     }
 
@@ -33,6 +29,6 @@ public abstract class Hero {
     public abstract Bullet fire();
 
     public Coordinate getCoordinate() {
-        return new Coordinate(x, y);
+        return coordinate;
     }
 }

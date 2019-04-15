@@ -1,7 +1,5 @@
 package com.game.engines;
 
-import java.util.Objects;
-
 public class Coordinate {
 
     private int x;

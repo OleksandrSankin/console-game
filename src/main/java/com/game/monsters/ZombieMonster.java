@@ -1,17 +1,21 @@
 package com.game.monsters;
 
 import com.game.engines.BattleField;
+import com.game.engines.Coordinate;
 
 class ZombieMonster extends Monster {
 
-    ZombieMonster(int x, int y, BattleField battleField) {
-        super(x, y, battleField);
+    ZombieMonster(Coordinate coordinate, BattleField battleField) {
+        super(coordinate, battleField);
     }
 
     @Override
     public void move() {
-        battleField.set(x, y, ' ');
-        x++;
-        battleField.set(x, y, 'Z');
+        battleField.set(coordinate, ' ');
+
+        int x = coordinate.getX();
+        coordinate = new Coordinate(++x, coordinate.getY());
+
+        battleField.set(coordinate, 'Z');
     }
 }
