@@ -1,6 +1,7 @@
 package com.game;
 
 import com.game.engines.BattleField;
+import com.game.engines.ConsoleReaderDelegatorImpl;
 import com.game.engines.SimpleEngine;
 import com.game.heroes.SuperMan;
 import com.game.monsters.MonsterFactory;
@@ -14,7 +15,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         ConsoleReader console = new ConsoleReader();
-        BattleField battleField = new BattleField(25, 18, console);
+        ConsoleReaderDelegatorImpl consoleReaderDelegator
+                = new ConsoleReaderDelegatorImpl(console);
+
+        BattleField battleField = new BattleField(25, 18, consoleReaderDelegator);
         SuperMan hero = new SuperMan(new Gun(), battleField);
 
         SimpleEngine gameEngine = new SimpleEngine(hero, battleField,

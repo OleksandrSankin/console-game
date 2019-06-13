@@ -8,9 +8,9 @@ public class BattleField {
 
     private final char[][] battleField;
 
-    private final ConsoleReader console;
+    private final ConsoleReaderDelegator console;
 
-    public BattleField(int height, int width, ConsoleReader console) {
+    public BattleField(int height, int width, ConsoleReaderDelegator console) {
         this.battleField = new char[height][width];
         this.console = console;
         this.clean();
