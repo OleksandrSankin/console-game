@@ -40,6 +40,13 @@ public class SuperMan extends Hero {
         battleField.set(coordinate, 'S');
     }
 
+
+
+
+
+
+
+
     @Override
     public Bullet fire() {
         return weapon.fire(coordinate, battleField);
